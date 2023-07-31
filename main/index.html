@@ -1,1 +1,25 @@
-
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Authentication Demo</h1>
+    <div class="lock-container" id="lockContainer">
+      <div class="lock">🔒</div>
+      <!-- Remove the key element -->
+    </div>
+    <form id="loginForm">
+      <label for="password">Enter Password:</label>
+      <input id="password" placeholder="Password">
+      <button type="submit">Login</button>
+    </form>
+    <div id="verificationResult"></div>
+    <div class="tooltip"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
