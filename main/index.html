@@ -16,7 +16,7 @@
     </div>
     <form id="loginForm">
       <label for="password">Enter Password:</label>
-      <input id="password" placeholder="Password">
+      <input id="password" placeholder="Password" onclick="showExplanationBox()">
       <button type="submit">Login</button>
     </form>
     <div id="verificationResult"></div>
@@ -58,5 +58,33 @@
   align-items: center;
   height: 100%;
 }
+
+explanationBox {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: #23002E; /* Super dark purple color */
+  padding: 10px;
+  color: #FFFFFF; /* White text */
+  display: none;
+}
+
 </style>
+<script>
+  // JavaScript function to show the explanation box
+  function showExplanationBox() {
+    const explanationText = "This password will be Encrypted to Sha256 then compare if the Sha256 values are the same as the server";
+    let explanationBox = document.getElementById("explanationBox");
+
+    if (!explanationBox) {
+      explanationBox = document.createElement("div");
+      explanationBox.id = "explanationBox";
+      explanationBox.innerText = explanationText;
+      document.body.appendChild(explanationBox);
+    }
+
+    explanationBox.style.display = "block";
+  }
+</script>
 </html>
