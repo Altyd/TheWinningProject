@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,11 +7,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="particles-js"></div>
   <div class="container">
-    <h1>Welcome to the Authentication Demo</h1>
+    <!-- Your existing content here -->
+    <div id="headerrr" <h1>Welcome to the Authentication Demo</h1> </div>
     <div class="lock-container" id="lockContainer">
       <div class="lock">🔒</div>
-      <!-- Remove the key element -->
     </div>
     <form id="loginForm">
       <label for="password">Enter Password:</label>
@@ -19,7 +21,42 @@
     </form>
     <div id="verificationResult"></div>
     <div class="tooltip"></div>
+
+    <!-- Add the animation-related elements from the previous website here -->
+    <div id="introText" class="fade-in">
+      <h1>The Winning Project</h1>
+    </div>
+    <div id="secondText" class="hidden">
+      <h1>Brought To You By</h1>
+    </div>
+    <div id="franco" class="hidden">
+      <h2>Franco</h2>
+      <a href="https://github.com/Altyd"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" alt="Franco GitHub" width="100"></a>
+    </div>
   </div>
+  <script src="particles.min.js"></script>
   <script src="script.js"></script>
 </body>
+<style>
+  /* Existing styles */
+  body {
+    background-color: black; /* Update the background color to black */
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+</style>
 </html>
