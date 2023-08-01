@@ -5,22 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Authentication Demo</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Existing styles */
+    body {
+      background-color: black;
+      color: #FFFFFF;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    /* Tooltip styles */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 220px;
+      background-color: #fff;
+      color: black;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      top: -40px;
+      left: 190%;
+      transform: translateX(-50%);
+      transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+  </style>
 </head>
 <body>
   <div id="particles-js"></div>
   <div class="container">
     <!-- Your existing content here -->
-    <div id="headerrr" <h1>Welcome to the Authentication Demo</h1> </div>
+    <div id="headerrr">
+      <h1>Authentication Demo With SHA-256</h1>
+    </div>
     <div class="lock-container" id="lockContainer">
       <div class="lock">🔒</div>
     </div>
     <form id="loginForm">
       <label for="password">Enter Password:</label>
-      <input id="password" placeholder="Password" onclick="showExplanationBox()">
+      <!-- Add the tooltip to the input element -->
+      <div class="tooltip">
+        <input id="password" placeholder="Password">
+        <span class="tooltiptext">We cannot save the password in plain text ("francoisthebest") otherwise if we get hacked the hackers would know what the password is. So we counter this by encrypting the password before saving it to our database we will be using SHA-256 for this example: This password will be Encrypted to SHA-256 then compare if the SHA-256 values are the same as the database. "francoisthebest" is now saved as "7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26" on our database</span>
+      </div>
       <button type="submit">Login</button>
     </form>
     <div id="verificationResult"></div>
-    <div class="tooltip"></div>
 
     <!-- Add the animation-related elements from the previous website here -->
     <div id="introText" class="fade-in">
@@ -31,60 +96,84 @@
     </div>
     <div id="franco" class="hidden">
       <h2>Franco</h2>
-      <a href="https://github.com/Altyd"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" alt="Franco GitHub" width="100"></a>
+      <p>>Backend<p>
+      <p>>Frontend<p>
+      <p>>Technical<p>
+      <p>>Project Funding<p>
+      <p>Github Repo For Project:<p>
+      <a href="https://github.com/Altyd/TheWinningProject">TheWinningProject</a>
+    </div>
+    <div id="yentl" class="hidden">
+      <h2>Yentl</h2>
+      <p>>Frontend Suggestions<p>
     </div>
   </div>
   <script src="particles.min.js"></script>
   <script src="script.js"></script>
-</body>
-<style>
-  /* Existing styles */
-  body {
-    background-color: black; /* Update the background color to black */
-    color: #FFFFFF;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const correctPassword = "francoisthebest";
+    const loginForm = document.getElementById("loginForm");
+    const lockContainer = document.getElementById("lockContainer");
+    const verificationResultt = document.getElementById("verificationResult");
+    const passwordInput = document.getElementById("password");
+    const container = document.querySelector(".container");
+    const sha256Section = document.createElement("div");
+    sha256Section.id = "sha256Section";
+    sha256Section.innerHTML = `
+      <h2>SHA-256 Conversion</h2>
+      <p>Enter plain text:</p>
+      <input id="plainTextInput" placeholder="Plain text">
+      <button type="button" onclick="convertToSHA256()">Convert to SHA-256</button>
+      <p id="sha256Result"></p>
+      <p id="explanation">What is SHA-256?</p>
+      <p id="explanation">SHA-256 is like a magic machine that turns any input into a fixed-size, unique code that is hard to guess or reverse-engineer. It's widely used to secure data, passwords, and ensure the integrity of digital information.</p>
+    `;
+    sha256Section.style.display = "none";
+    loginForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const enteredPassword = passwordInput.value;
+
+      // Hash the entered password using the provided function
+      const enteredPasswordHash = await hashPassword(enteredPassword);
+
+      if (enteredPasswordHash === "7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26") {
+        // Hide login form elements
+        lockContainer.style.display = "none";
+        loginForm.style.display = "none";
+        verificationResultt.style.display = "none";
+
+        // Show SHA-256 section
+        container.appendChild(sha256Section);
+        sha256Section.style.display = "block";
+      } else {
+        // Incorrect password
+        const verificationResult = document.getElementById("verificationResult");
+        verificationResult.textContent = "Incorrect password. Please try again.";
+      }
+    });
+  });
+
+  async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
   }
 
-.container {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+  function convertToSHA256() {
+    const plainTextInput = document.getElementById("plainTextInput");
+    const sha256Result = document.getElementById("sha256Result");
+    const inputText = plainTextInput.value;
 
-explanationBox {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  background-color: #23002E; /* Super dark purple color */
-  padding: 10px;
-  color: #FFFFFF; /* White text */
-  display: none;
-}
+    // Compute the SHA-256 hash using CryptoJS
+    const sha256Hash = CryptoJS.SHA256(inputText).toString();
 
-</style>
-<script>
-  // JavaScript function to show the explanation box
-  function showExplanationBox() {
-    const explanationText = "This password will be Encrypted to Sha256 then compare if the Sha256 values are the same as the server";
-    let explanationBox = document.getElementById("explanationBox");
-
-    if (!explanationBox) {
-      explanationBox = document.createElement("div");
-      explanationBox.id = "explanationBox";
-      explanationBox.innerText = explanationText;
-      document.body.appendChild(explanationBox);
-    }
-
-    explanationBox.style.display = "block";
+    sha256Result.textContent = `SHA-256: ${sha256Hash}`;
   }
 </script>
+</body>
 </html>
