@@ -1,38 +1,65 @@
-    const loginForm = document.getElementById('loginForm');
-    const passwordInput = document.getElementById('password');
-    const verificationResult = document.getElementById('verificationResult');
-
-    loginForm.addEventListener('submit', function(event) {
+  document.addEventListener("DOMContentLoaded", function () {
+    const correctPassword = "francoisthebest";
+    const loginForm = document.getElementById("loginForm");
+    const lockContainer = document.getElementById("lockContainer");
+    const verificationResultt = document.getElementById("verificationResult");
+    const passwordInput = document.getElementById("password");
+    const container = document.querySelector(".container");
+    const sha256Section = document.createElement("div");
+    sha256Section.id = "sha256Section";
+    sha256Section.innerHTML = `
+      <h2>SHA-256 Conversion</h2>
+      <p>Enter plain text:</p>
+      <input id="plainTextInput" placeholder="Plain text">
+      <button type="button" onclick="convertToSHA256()">Convert to SHA-256</button>
+      <p id="sha256Result"></p>
+      <p id="explanation">What is SHA-256?</p>
+      <p id="explanation">SHA-256 is like a magic machine that turns any input into a fixed-size, unique code that is hard to guess or reverse-engineer. It's widely used to secure data, passwords, and ensure the integrity of digital information.</p>
+    `;
+    sha256Section.style.display = "none";
+    loginForm.addEventListener("submit", async function (event) {
       event.preventDefault();
       const enteredPassword = passwordInput.value;
 
-      //Hash password
-      async function hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-        return hashHex;
+      // Hash the entered password using the provided function
+      const enteredPasswordHash = await hashPassword(enteredPassword);
+
+      if (enteredPasswordHash === "7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26") {
+        // Hide login form elements
+        lockContainer.style.display = "none";
+        loginForm.style.display = "none";
+        verificationResultt.style.display = "none";
+
+        // Show SHA-256 section
+        container.appendChild(sha256Section);
+        sha256Section.style.display = "block";
+      } else {
+        // Incorrect password
+        const verificationResult = document.getElementById("verificationResult");
+        verificationResult.textContent = "Incorrect password. Please try again.";
       }
-
-      // Encrypted password 
-      const correctPassword = '7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26';
-
-      hashPassword(enteredPassword)
-        .then(hashedPassword => {
-          if (hashedPassword === correctPassword) {
-            verificationResult.textContent = 'Authentication successful! ✅';
-          } else {
-            verificationResult.textContent = 'Incorrect password! ❌';
-          }
-        })
-        .catch(error => {
-          console.error('Error hashing password:', error);
-          verificationResult.textContent = 'Error verifying password!';
-        });
     });
-  
+  });
+
+  async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+  }
+
+  function convertToSHA256() {
+    const plainTextInput = document.getElementById("plainTextInput");
+    const sha256Result = document.getElementById("sha256Result");
+    const inputText = plainTextInput.value;
+
+    // Compute the SHA-256 hash using CryptoJS
+    const sha256Hash = CryptoJS.SHA256(inputText).toString();
+
+    sha256Result.textContent = `SHA-256: ${sha256Hash}`;
+  }
 particlesJS("particles-js", {
   particles: {
     number: {
