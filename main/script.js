@@ -168,10 +168,18 @@ document.getElementById('headerrr').classList.add('hidden');
       document.getElementById('franco').classList.add('fade-out');
       document.getElementById('franco').classList.add('hidden');
     }, 15000);
-
     setTimeout(function() {
-      document.getElementById('franco').classList.add('hidden');
+      document.getElementById('yentl').classList.remove('hidden');
+    }, 15000);
+    setTimeout(function() {
+      document.getElementById('yentl').add('fade-out');
+      document.getElementById('yentl').classList.add('hidden');
+    }, 15000);
+    setTimeout(function() {
+      document.getElementById('yentl').classList.add('hidden');
       document.getElementById('loginForm').classList.remove('hidden');
       document.getElementById('lockContainer').classList.remove('hidden');
       document.getElementById('headerrr').classList.remove('hidden');
     }, 18000); // Hiding Fran content after 3 seconds (total time: 18 seconds)
+    
+    
