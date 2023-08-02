@@ -76,10 +76,11 @@
       <h4>🔒 Credits 🔒</h4>
       </div>
       <h3>Franco</h3>
-      <p>Developer, Funding, Frontend, Backend,</p>
+      <p>Developer, Funding, Frontend, Backend</p>
       <h3>Yentl</h3>
       <p>Frontend suggestions</p>
       <h3>Jesse</h3>
+      <p>Project Name</p>
       <p>Frontend suggestions</p>
       <div class="container2">
       <h4>🔒 Project Information 🔒</h4>
@@ -213,38 +214,50 @@ particlesJS("particles-js", {
       document.getElementById('introText').classList.add('fade-out');
       document.getElementById('introText').classList.add('hidden');
     }, 3000);
-
+    
     setTimeout(function() {
       document.getElementById('introText').classList.add('hidden');
       document.getElementById('secondText').classList.remove('hidden');
     }, 6000);
-
+    
     setTimeout(function() {
       document.getElementById('secondText').classList.add('fade-out');
       document.getElementById('secondText').classList.add('hidden');
     }, 9000);
-
+    
     setTimeout(function() {
       document.getElementById('secondText').classList.add('hidden');
       document.getElementById('franco').classList.remove('hidden');
     }, 12000);
-
+    
     setTimeout(function() {
       document.getElementById('franco').classList.add('fade-out');
       document.getElementById('franco').classList.add('hidden');
     }, 15000);
+    
     setTimeout(function() {
+      document.getElementById('franco').classList.add('hidden');
+      document.getElementById('jesse').classList.remove('hidden');
+    }, 18000); // Adding "jesse" after 3 seconds (total time: 18 seconds)
+    
+    setTimeout(function() {
+      document.getElementById('jesse').classList.add('fade-out');
+      document.getElementById('jesse').classList.add('hidden');
+    }, 21000); // Hiding "jesse" after 3 seconds (total time: 21 seconds)
+    
+    setTimeout(function() {
+      document.getElementById('jesse').classList.add('hidden');
       document.getElementById('yentl').classList.remove('hidden');
-    }, 15000);
+    }, 24000); // Adding "yentl" after 3 seconds (total time: 24 seconds)
+    
     setTimeout(function() {
-      document.getElementById('yentl').add('fade-out');
-      document.getElementById('yentl').classList.add('hidden'); 
-    }, 15000);
-    setTimeout(function() {
+      document.getElementById('yentl').classList.add('fade-out');
       document.getElementById('yentl').classList.add('hidden');
+    }, 27000); // Hiding "yentl" after 3 seconds (total time: 27 seconds)
+    
+    setTimeout(function() {
       document.getElementById('loginForm').classList.remove('hidden');
       document.getElementById('lockContainer').classList.remove('hidden');
       document.getElementById('headerrr').classList.remove('hidden');
-    }, 18000); // Hiding Fran content after 3 seconds (total time: 18 seconds)
-    
+    }, 30000); // Displaying login form after 3 seconds (total time: 30 seconds)
     
