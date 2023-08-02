@@ -3,11 +3,9 @@ School project to demonstrate how authentication works
 
 # Table of contents
 
-1. [Contributors](#Contributors)
-2. [Authentication](#Authentication)
-3. [Messages](#messages)
-4. [Merging](#merging)
-5. [Contributors](#Contributors)
+1. [Authentication](#Authentication)
+2. [Animations](#Animations)
+3. [Contributors](#Contributors)
 
 ## Authentication
 * When the enter button is pressed we covert the password to SHA-256:
@@ -19,7 +17,6 @@ School project to demonstrate how authentication works
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
     return hashHex;
-  }
    ```
 * We then compare the hashes
   ```shell
@@ -31,8 +28,14 @@ School project to demonstrate how authentication works
       } else {
         alert("Wrong Password");
       }
-    });
-  });
+   ```  
+## Animations
+* The animations were made to be super simple:
+  ```shell
+      setTimeout(function() {
+      document.getElementById('introText').classList.add('fade-out');
+      document.getElementById('introText').classList.add('hidden');
+    }, 3000);
    ```  
 ## Contributors
 * [Franco](https://github.com/Altyd)
