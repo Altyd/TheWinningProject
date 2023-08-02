@@ -23,7 +23,7 @@
       <p> Strong authentication measures can promote the adoption of secure digital processes and transactions, reducing the reliance on physical documents and paperwork. This shift to digital reduces the need for paper production, transportation, and disposal, ultimately lowering the carbon footprint associated with paper-based processes.</p>
       <button type="button" onclick="credits()">View Project Credits</button>
       <button onclick="window.location.href='https://github.com/Altyd/TheWinningProject';">
-      Projects Full Code
+      Full Code Of Project
       </button>
       `;
     sha256Section.style.display = "none";
@@ -86,9 +86,8 @@
       <h4>🔒 Project Information 🔒</h4>
       </div>
       <p>This project made use of Html,CSS and Javascript. This project is fully open source if anyone is interested in seeing how the authentication system works behind the scenes. I (Franco) have many similiar projects check them out if your interested</p>
-      <button type="button" onclick="credits()">View Project Credits</button>
       <button onclick="window.location.href='https://github.com/Altyd/TheWinningProject';">
-      Projects Full Code
+      Full Code Of Project
       </button>
       <h3>My Other Projects:</h3>
       <button onclick="window.location.href='https://fakesnaps.com';">
