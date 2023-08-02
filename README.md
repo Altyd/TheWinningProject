@@ -40,4 +40,8 @@ School project to demonstrate how authentication works
 ## Contributors
 * [Franco](https://github.com/Altyd)
 * [Jesse](https://github.com/Altyd)
+<<<<<<< HEAD
 * [Yentl](https://github.com/Altyd)
+=======
+* [Yentl](https://github.com/Altyd)
+>>>>>>> ed6e7b75e58f9f289bc57002012814ef3afdef44
