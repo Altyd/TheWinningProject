@@ -31,16 +31,16 @@
       event.preventDefault();
       const enteredPassword = passwordInput.value;
 
-      // Hash the entered password using the provided function
+      // Hash the entered password using the hash function
       const enteredPasswordHash = await hashPassword(enteredPassword);
 
       if (enteredPasswordHash === correctPassword) {
-        // Hide login form elements
+        // Hide login elements
         lockContainer.style.display = "none";
         loginForm.style.display = "none";
         verificationResultt.style.display = "none";
 
-        // Show SHA-256 section
+        // Show the SHA-256 section
         container.appendChild(sha256Section);
         sha256Section.style.display = "block";
       } else {
@@ -65,7 +65,7 @@
     const sha256Result = document.getElementById("sha256Result");
     const inputText = plainTextInput.value;
 
-    // Compute the SHA-256 hash using CryptoJS
+    // Calculate the SHA-256 hash using CryptoJS
     const sha256Hash = CryptoJS.SHA256(inputText).toString();
 
     sha256Result.textContent = `SHA-256: ${sha256Hash}`;
@@ -206,9 +206,7 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
-    // Your existing JavaScript code here
-    
-    // Animation-related JavaScript code from the previous website
+    // The animations
     setTimeout(function() {
       document.getElementById('introText').classList.add('fade-out');
       document.getElementById('introText').classList.add('hidden');
@@ -237,26 +235,26 @@ particlesJS("particles-js", {
     setTimeout(function() {
       document.getElementById('franco').classList.add('hidden');
       document.getElementById('jesse').classList.remove('hidden');
-    }, 18000); // Adding "jesse" after 3 seconds (total time: 18 seconds)
+    }, 18000);
     
     setTimeout(function() {
       document.getElementById('jesse').classList.add('fade-out');
       document.getElementById('jesse').classList.add('hidden');
-    }, 21000); // Hiding "jesse" after 3 seconds (total time: 21 seconds)
+    }, 21000);
     
     setTimeout(function() {
       document.getElementById('jesse').classList.add('hidden');
       document.getElementById('yentl').classList.remove('hidden');
-    }, 24000); // Adding "yentl" after 3 seconds (total time: 24 seconds)
+    }, 24000);
     
     setTimeout(function() {
       document.getElementById('yentl').classList.add('fade-out');
       document.getElementById('yentl').classList.add('hidden');
-    }, 27000); // Hiding "yentl" after 3 seconds (total time: 27 seconds)
+    }, 27000);
     
     setTimeout(function() {
       document.getElementById('loginForm').classList.remove('hidden');
       document.getElementById('lockContainer').classList.remove('hidden');
       document.getElementById('headerrr').classList.remove('hidden');
-    }, 30000); // Displaying login form after 3 seconds (total time: 30 seconds)
+    }, 30000);
     
