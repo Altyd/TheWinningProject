@@ -1,5 +1,5 @@
   document.addEventListener("DOMContentLoaded", function () {
-    const correctPassword = "francoisthebest";
+    const correctPassword = "7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26";
     const loginForm = document.getElementById("loginForm");
     const lockContainer = document.getElementById("lockContainer");
     const verificationResultt = document.getElementById("verificationResult");
@@ -8,14 +8,24 @@
     const sha256Section = document.createElement("div");
     sha256Section.id = "sha256Section";
     sha256Section.innerHTML = `
-      <h2>SHA-256 Conversion</h2>
+      <div class="container2">
+      <h4>🔒 SHA-256 Conversion 🔒</h4>
+      </div>
       <p>Enter plain text:</p>
       <input id="plainTextInput" placeholder="Plain text">
       <button type="button" onclick="convertToSHA256()">Convert to SHA-256</button>
       <p id="sha256Result"></p>
       <p id="explanation">What is SHA-256?</p>
       <p id="explanation">SHA-256 is like a magic machine that turns any input into a fixed-size, unique code that is hard to guess or reverse-engineer. It's widely used to secure data, passwords, and ensure the integrity of digital information.</p>
-    `;
+      <h3>Why is Authentication important?</h3>
+      <p>Authentication is crucial in general because it provides a way to verify the identity of users, devices, or entities attempting to access a system, application, or network. It serves as a fundamental security mechanism to protect sensitive information, prevent unauthorized access, and maintain the integrity and confidentiality of data.</p>
+      <h3>Why is Authentication important to the environment?</h3>
+      <p> Strong authentication measures can promote the adoption of secure digital processes and transactions, reducing the reliance on physical documents and paperwork. This shift to digital reduces the need for paper production, transportation, and disposal, ultimately lowering the carbon footprint associated with paper-based processes.</p>
+      <button type="button" onclick="credits()">View Project Credits</button>
+      <button onclick="window.location.href='https://github.com/Altyd/TheWinningProject';">
+      Projects Full Code
+      </button>
+      `;
     sha256Section.style.display = "none";
     loginForm.addEventListener("submit", async function (event) {
       event.preventDefault();
@@ -24,7 +34,7 @@
       // Hash the entered password using the provided function
       const enteredPasswordHash = await hashPassword(enteredPassword);
 
-      if (enteredPasswordHash === "7b86e763af0073ba3344874559885a3cb81b509ca88f131d52325b9da4a05d26") {
+      if (enteredPasswordHash === correctPassword) {
         // Hide login form elements
         lockContainer.style.display = "none";
         loginForm.style.display = "none";
@@ -59,6 +69,37 @@
     const sha256Hash = CryptoJS.SHA256(inputText).toString();
 
     sha256Result.textContent = `SHA-256: ${sha256Hash}`;
+  }
+  function credits() {
+    sha256Section.innerHTML = `
+      <div class="container2">
+      <h4>🔒 Credits 🔒</h4>
+      </div>
+      <h3>Franco</h3>
+      <p>Developer, Funding, Frontend, Backend,</p>
+      <h3>Yentl</h3>
+      <p>Frontend suggestions</p>
+      <h3>Jesse</h3>
+      <p>Frontend suggestions</p>
+      <div class="container2">
+      <h4>🔒 Project Information 🔒</h4>
+      </div>
+      <p>This project made use of Html,CSS and Javascript. This project is fully open source if anyone is interested in seeing how the authentication system works behind the scenes. I (Franco) have many similiar projects check them out if your interested</p>
+      <button type="button" onclick="credits()">View Project Credits</button>
+      <button onclick="window.location.href='https://github.com/Altyd/TheWinningProject';">
+      Projects Full Code
+      </button>
+      <h3>My Other Projects:</h3>
+      <button onclick="window.location.href='https://fakesnaps.com';">
+      FakeSnaps.com
+      </button>
+      <button onclick="window.location.href='https://nbn.digital';">
+      NBN.Digital
+      </button>
+      <button onclick="window.location.href='https://github.com/Altyd/simpledo';">
+      SimpleDO To Do List
+      </button>
+      `;
   }
 particlesJS("particles-js", {
   particles: {
@@ -165,9 +206,6 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
-document.getElementById('loginForm').classList.add('hidden');
-document.getElementById('lockContainer').classList.add('hidden');
-document.getElementById('headerrr').classList.add('hidden');
     // Your existing JavaScript code here
     
     // Animation-related JavaScript code from the previous website
@@ -200,7 +238,7 @@ document.getElementById('headerrr').classList.add('hidden');
     }, 15000);
     setTimeout(function() {
       document.getElementById('yentl').add('fade-out');
-      document.getElementById('yentl').classList.add('hidden');
+      document.getElementById('yentl').classList.add('hidden'); 
     }, 15000);
     setTimeout(function() {
       document.getElementById('yentl').classList.add('hidden');

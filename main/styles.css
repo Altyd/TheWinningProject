@@ -111,4 +111,55 @@ body {
       opacity: 0;
     }
   }
-</style>
+  /* Define the animation for h2 elements */
+  @keyframes fadeIn1 {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply the animation to h2 elements */
+  h3 {
+    animation: fadeIn1 1s ease-in-out;
+  }
+  .container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h4 {
+  /* The rest of your existing styles */
+  color: hsl(100, 100%, 100%);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Anonymous Pro", monospace;
+  letter-spacing: 7px;
+  overflow: hidden;
+  border-right: 2px solid hsl(0, 0%, 80%);
+  white-space: nowrap;
+  animation: typewriter 4s steps(44) 1s 1 normal both, blinkTextCursor 500ms infinite;
+      align-items: center;
+    justify-content: center;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 710px;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: hsl(0, 0%, 80%);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
